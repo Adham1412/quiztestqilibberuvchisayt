@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8fafc" />
+    <title>Quiz Test tuzuvchi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      .theme-dark {
+        color-scheme: dark;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 50;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        border-radius: 8px;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: #ffffff;
+        min-width: 64px;
+        padding: 12px 15px;
+        font: 700 14px/1 Inter, system-ui, sans-serif;
+        box-shadow: 0 16px 34px rgba(15, 23, 42, 0.22);
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 20px 42px rgba(15, 23, 42, 0.28);
+      }
+
+      .theme-toggle:focus-visible {
+        outline: 3px solid rgba(16, 185, 129, 0.35);
+        outline-offset: 3px;
+      }
+
+      .theme-dark .theme-toggle {
+        border-color: rgba(148, 163, 184, 0.3);
+        background: linear-gradient(135deg, #f8fafc, #dbeafe);
+        color: #020617;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+
+      .theme-dark body {
+        background: #020617;
+      }
+
+      .theme-dark #root > div {
+        background:
+          radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 32%),
+          radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.2), transparent 36%),
+          linear-gradient(135deg, #020617 0%, #0f172a 44%, #111827 100%) !important;
+        color: #e5e7eb !important;
+      }
+
+      .theme-dark [class*="bg-white"],
+      .theme-dark [class*="bg-white/"],
+      .theme-dark [class*="bg-slate-50"],
+      .theme-dark [class*="bg-slate-100"] {
+        background-color: rgba(15, 23, 42, 0.86) !important;
+      }
+
+      .theme-dark section[class*="bg-white"],
+      .theme-dark aside[class*="bg-white"] {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.9)) !important;
+        border-color: rgba(148, 163, 184, 0.22) !important;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42) !important;
+        backdrop-filter: blur(18px);
+      }
+
+      .theme-dark header [class*="bg-white"] {
+        background-color: rgba(15, 23, 42, 0.82) !important;
+        border-color: rgba(148, 163, 184, 0.24) !important;
+      }
+
+      .theme-dark [class*="bg-slate-950"] {
+        background-color: #e2e8f0 !important;
+        color: #020617 !important;
+      }
+
+      .theme-dark [class*="bg-slate-200"],
+      .theme-dark [class*="bg-slate-300"] {
+        background-color: rgba(51, 65, 85, 0.82) !important;
+      }
+
+      .theme-dark [class*="text-slate-950"],
+      .theme-dark [class*="text-slate-900"],
+      .theme-dark [class*="text-slate-800"] {
+        color: #f8fafc !important;
+      }
+
+      .theme-dark [class*="text-slate-700"],
+      .theme-dark [class*="text-slate-600"],
+      .theme-dark [class*="text-slate-500"] {
+        color: #cbd5e1 !important;
+      }
+
+      .theme-dark [class*="text-emerald-700"] {
+        color: #34d399 !important;
+      }
+
+      .theme-dark [class*="text-rose-700"],
+      .theme-dark [class*="text-rose-800"] {
+        color: #fda4af !important;
+      }
+
+      .theme-dark [class*="text-amber-700"] {
+        color: #fbbf24 !important;
+      }
+
+      .theme-dark [class*="border-slate-200"],
+      .theme-dark [class*="border-slate-300"] {
+        border-color: rgba(148, 163, 184, 0.28) !important;
+      }
+
+      .theme-dark [class*="shadow"] {
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.38) !important;
+      }
+
+      .theme-dark button[class*="bg-emerald-600"],
+      .theme-dark span[class*="bg-emerald-600"],
+      .theme-dark div[class*="bg-emerald-600"] {
+        background: linear-gradient(135deg, #10b981, #059669) !important;
+        color: #ecfdf5 !important;
+      }
+
+      .theme-dark button[class*="bg-emerald-600"]:hover,
+      .theme-dark span[class*="bg-emerald-600"]:hover {
+        background: linear-gradient(135deg, #34d399, #10b981) !important;
+      }
+
+      .theme-dark button[class*="bg-slate-950"] {
+        background: linear-gradient(135deg, #f8fafc, #cbd5e1) !important;
+        color: #020617 !important;
+      }
+
+      .theme-dark button[class*="border-slate-300"] {
+        background-color: rgba(15, 23, 42, 0.72) !important;
+        color: #e2e8f0 !important;
+      }
+
+      .theme-dark button[class*="border-slate-200"]:hover,
+      .theme-dark button[class*="hover:border-emerald-400"]:hover {
+        border-color: rgba(52, 211, 153, 0.72) !important;
+        background-color: rgba(6, 78, 59, 0.36) !important;
+      }
+
+      .theme-dark [class*="bg-emerald-50"] {
+        background-color: rgba(6, 78, 59, 0.36) !important;
+        border-color: rgba(52, 211, 153, 0.34) !important;
+        color: #d1fae5 !important;
+      }
+
+      .theme-dark [class*="bg-rose-50"] {
+        background-color: rgba(127, 29, 29, 0.32) !important;
+        border-color: rgba(251, 113, 133, 0.34) !important;
+        color: #ffe4e6 !important;
+      }
+
+      .theme-dark [class*="bg-amber-50"] {
+        background-color: rgba(120, 53, 15, 0.32) !important;
+        border-color: rgba(251, 191, 36, 0.34) !important;
+        color: #fef3c7 !important;
+      }
+
+      .theme-dark [class*="border-emerald-500"] {
+        border-color: #34d399 !important;
+      }
+
+      .theme-dark [class*="border-rose-500"] {
+        border-color: #fb7185 !important;
+      }
+
+      .theme-dark [class*="font-mono"] {
+        background: rgba(2, 6, 23, 0.58) !important;
+        color: #dbeafe !important;
+      }
+
+      .theme-dark input,
+      .theme-dark select,
+      .theme-dark textarea {
+        background-color: rgba(15, 23, 42, 0.86);
+        color: #f8fafc;
+        border-color: rgba(148, 163, 184, 0.34);
+      }
+
+      .theme-dark ::selection {
+        background: rgba(52, 211, 153, 0.34);
+        color: #f8fafc;
+      }
+
+      @media (max-width: 640px) {
+        .theme-toggle {
+          right: 12px;
+          bottom: 12px;
+          padding: 11px 13px;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-BF8UsTuI.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dtpfxr_V.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <button class="theme-toggle" type="button" aria-label="Tungi rejimga o'tish">Tun</button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.querySelector('.theme-toggle');
+        var savedTheme = localStorage.getItem('quiz-theme');
+
+        function setTheme(theme) {
+          var isDark = theme === 'dark';
+          root.classList.toggle('theme-dark', isDark);
+          button.textContent = isDark ? 'Kun' : 'Tun';
+          button.setAttribute('aria-label', isDark ? "Kunduzgi rejimga o'tish" : "Tungi rejimga o'tish");
+          localStorage.setItem('quiz-theme', theme);
+        }
+
+        setTheme(savedTheme || 'light');
+        button.addEventListener('click', function () {
+          setTheme(root.classList.contains('theme-dark') ? 'light' : 'dark');
+        });
+      })();
+    </script>
+  </body>
+</html>
